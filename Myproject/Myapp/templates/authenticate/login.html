@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MDB CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.css" rel="stylesheet">
+    <style>
+        .vh-100 {
+            height: 100vh;
+        }
+        .gradient-custom-3 {
+            background: linear-gradient(to right, #29f7ec, #f03636);
+        }
+        .gradient-custom-4 {
+            background: linear-gradient(to right, #2b7de9, #2594fc);
+        }
+        .card {
+            border-radius: 20px;
+            color: aqua;
+            border-radius: 20%;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+        }
+        .center-text {
+            text-align: center;
+        }
+        .alert-dismissible .btn-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 2;
+            padding: 1.25rem 1rem;
+        }
+    </style>
+</head>
+<body class="vh-100 gradient-custom-3 d-flex align-items-center justify-content-center">
+    <div class="container form-container">
+        <div class="card">
+            <div class="card-body p-4">
+                <h3 class="center-text mb-4">WELCOME BACK  TO MY  LOGIN</h3>
+                <form action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-2">
+                        <label for="username" class="form-label">UserName</label>
+                        <input type="text" class="form-control" name="username" id="username" aria-describedby="usernameHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    
+                <p class="text-center text-muted mt-5 mb-0">Create an account? <a href="{% url 'register' %}"
+                  class="fw-bold text-body"><u>Register here</u></a></p>
+                </form>
+                {% if messages %}
+                    <ul class="mt-4">
+                        {% for message in messages %}
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- MDB JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script>
+</body>
+</html>
